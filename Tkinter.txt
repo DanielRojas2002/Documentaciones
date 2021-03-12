@@ -1,0 +1,67 @@
+Primero installar tkinter (pip install tkinter)
+
+-----------IMPORTACION DE LIBRERIAS--------------
+import tkinter as tk       (Importamos tkinter como tk)     
+from tkinter import ttk    (Importamos tkinter como tkk)
+import tkinter.font as tkFont   (Importamos tkinter como tkFont) -- Para poder poner fondos
+from tkinter import messagebox   (Importamos messagebox) -- para tener un metodo de messagebox
+-------------------------------
+
+Inicializamos un objeto el cual es nuestra aplicacion
+class Aplicacion():
+    def __init__(self):
+    --Aqui abajo ya podemos ir agregando codigo --
+
+
+    self.ventanai=tk.Tk()  -- Creamos nuestra ventana 
+    self.ancho_ventana = 600  -- Creamos una variable para darle el ancho que queremos para poder despues ubicarla 
+                                donde queramos en la pantalla--
+    self.alto_ventana = 600   -- Creamos una variable para darle el alto que queremos para poder despues ubicarla 
+                                donde queramos en la pantalla--
+
+    self.x_ventana = self.ventanai.winfo_screenwidth() - 1050 - self.ancho_ventana // 2 -- Creamos una variable la cual
+    tendra un atributo(winfo_screenheight())- el lugar donde queremos que este izq o der - el ancho //2 para que este justamnete en la mitad
+
+    self.y_ventana = self.ventanai.winfo_screenheight() // 2 - self.alto_ventana // 2 --Es lo mismo que lo de arriba solo
+        que para el eje y --
+
+    --Creamos una variable la cual va tener las cordenadas de x,y y se lo mutiplicamos y sumamos a donde queremos que este la ventana--
+    self.posicion = str(self.ancho_ventana) + "x" + str(self.alto_ventana) + "+" + str(self.x_ventana) + "+" + str(self.y_ventana)
+    
+    -- Aqui le damos una propiedad que se llama geometry qu esta propiedad es la que se encarga de poner donde acomodar 
+    la ventana y le damos la variable que tiene esa posicion-- -- Todo va en base a la ventana (self.ventanai)--
+    self.ventanai.geometry(self.posicion)
+
+    -- Aqui le damos el titulo a la ventana --
+    self.ventanai.title("BIENVENIDO AL GESTOR DE EMPLEADOS : ")
+
+    -- Aqui le damos la dimension otra vez de la ventana para confirmar esta linea es opcional-- si ya pusiste la de arriba
+    self.ventanai.geometry("600x600")
+
+    --Aqui usamos el atributo maxsize que nos ayuda a que el usuario no pueda cambiar de tamaño la ventana--
+    self.ventanai.maxsize(600, 600)
+    self.ventanai.minsize(600, 600)
+    self.fontStyle = tkFont.Font(family="Lucida Grande", size=20)
+    self.ventanai.iconbitmap("Multimedia\\icono.ico")
+
+    self.frame=tk.Frame(self.ventanai,bg="slate gray")
+    self.frame.pack(expand=True,fill="both")
+
+    self.framee=tk.Frame(self.ventanai,bg="royal blue")
+    self.framee.place(x=0,y=0,width=600,height=120)
+
+    self.txt0101=tk.Label(self.framee,text="GESTOR DE EMPLEADOS",background="gold",font=self.fontStyle)
+    self.txt0101.place(x=40,y=10,width=500,height=100)
+
+
+    self.image=tk.PhotoImage(file="Multimedia\\base.gif")
+    self.txt=tk.Label(image=self.image)
+    self.txt.place(x=85,y=150)
+
+
+    self.frame2=tk.Frame(self.ventanai,bg="deep sky blue")
+    self.frame2.place(x=0,y=480,width=600,height=130)
+    self.frame2.config(cursor="hand1")
+
+    self.botonAlta=tk.Button(self.frame2,text="ALTA",command=self.Alta,bd=5)
+    self.botonAlta.place(x=10,y=20,width=100,height=30)
