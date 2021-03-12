@@ -40,28 +40,64 @@ class Aplicacion():
 
     --Aqui usamos el atributo maxsize que nos ayuda a que el usuario no pueda cambiar de tamaño la ventana--
     self.ventanai.maxsize(600, 600)
+
+    -- Aqui usamos el atributo minsiza que nos atuda a que el usuario no pueda cambiar el tamaño de la ventana--
     self.ventanai.minsize(600, 600)
+
+    -- Aqui creamos una variable la cual va a tener el tipo de letra y el tamaño --
     self.fontStyle = tkFont.Font(family="Lucida Grande", size=20)
+
+    -- Aqui usamos el atributo (inconbitmap) y la ruta donde esta el icono.ico sirve para ponerle un icono a nuestras ventanas--
+    --Tienes que poner bien la ruta de donde esta el .ico--
     self.ventanai.iconbitmap("Multimedia\\icono.ico")
 
+    --Aqui creamos una variable la cual usamos el atributo (Frame) el cual sirve para tener un bloque adentro de la
+    ventana madre , ese bloque le decimos cual es la ventana madre y le damos un color con el atributo (bg)
     self.frame=tk.Frame(self.ventanai,bg="slate gray")
+
+    --Aqui usamos el metodo pack( para que todo la ventana madre tenga ese color )--
+    --expand==True(Toda la ventana), fill=="both" (Ambos lados Ancho y alto)
     self.frame.pack(expand=True,fill="both")
 
+    --Aqui creamos una variable la cual usamos el atributo (Frame) el cual sirve para tener un bloque adentro de la
+    ventana madre , ese bloque le decimos cual es la ventana madre y le damos un color con el atributo (bg)
     self.framee=tk.Frame(self.ventanai,bg="royal blue")
+    
+    --Aqui usamos el metodo place este nos sirve para darle las cordenadas de donde queremos ese bloque dentro
+    de la ventana madre-- width=ancho , heigth=alto 
     self.framee.place(x=0,y=0,width=600,height=120)
 
+    -- Definimos una variable la cual va a ser nuestro label (etiqueta) lo colocamos donde queremos que este
+        el texto que queremos que diga, el fondo que queremos que tenga , y le podemos aplicar la variable especial 
+        del fondo que utilizamos arriba -- estas se pueden omitir se pondra blanco por defecto
     self.txt0101=tk.Label(self.framee,text="GESTOR DE EMPLEADOS",background="gold",font=self.fontStyle)
+
+    -- La ponemos donde queramos con el metodo place y le damos el tamaño que queramos--
     self.txt0101.place(x=40,y=10,width=500,height=100)
 
-
+    --Creamos una variable la cual guaradara nuestra imagen , usamos el atributo (PhotoImage) el cual nos permite 
+    importar imagenes , despues usamos file=(y la ruta donde esta nuestra imagen)--
+    **Aqui debemos tranformar la imagen jpeg , pnj a ->.gif 
     self.image=tk.PhotoImage(file="Multimedia\\base.gif")
+
     self.txt=tk.Label(image=self.image)
+    --Aqui creamos una etiqueta para ponerle la imagen --
+    --Aqui ponemos donde queremos que este la imagen --
     self.txt.place(x=85,y=150)
 
-
+    -- Aqui creamos otro frame otro cuadrito de color --
+    -- es todo lo mismo-- la unica diferencia es : 
+    -- que tambien podemos cambiar el cursor que se muestre cuando este en ese cuadrito con el comando .config
+    cursor="el nombre del curso que queramos"--
     self.frame2=tk.Frame(self.ventanai,bg="deep sky blue")
     self.frame2.place(x=0,y=480,width=600,height=130)
+    ---Aqui--
     self.frame2.config(cursor="hand1")
 
+    --Aqui creamos una variable la cual contendra nuestro boton usamos el atributo Button
+    despues le ponemos donde queremos que este , el texto que queremos que diga , y la funcion que hara cuando se clicado--
+    -- bd="es el contorno en negrito --
     self.botonAlta=tk.Button(self.frame2,text="ALTA",command=self.Alta,bd=5)
+
+    -- Aqui utilizamos el metodo place para decidir donde queremos que este el ancho y alto--
     self.botonAlta.place(x=10,y=20,width=100,height=30)
