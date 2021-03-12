@@ -69,3 +69,7 @@ Se Utliza:
 	def mostrar(self,valor):
 		self.ui.resultadoAzu.setText("Nivel del Azucar: {}".format(valor)) ---- aqui concateno el valor del scroll
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Para ver ejercicios practicos :
+Aqui esta la liga de Github de mi repositorio donde practico ejemplos de PyQt5 
+						: https://github.com/DanielRojas2002/PyQt5
