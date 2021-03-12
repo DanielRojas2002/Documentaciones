@@ -168,3 +168,106 @@ class Aplicacion():
     self.combo.place(x=30,y=100)
     -- Despues que queremos que tenga adentro del Combobox--
     self.combo["values"]=("Informacion","Contar Registros","Empiece con ","Termine con ")
+
+
+    -- Para conocer el valor que eligio el usuario del combobox --
+    if self.combo.get()=="Informacion": -- Se utiliza  el nommbre del comobo y .get()=="Aqui va lo que pudo selccionar"
+        
+        --Si selecciono eso haz esto--
+        aqui usamos un metodo que se llama messagebox el cual muestra un cuadrito de informacion con un mensaje 
+        que quieras--
+        --Hay tres metodos de este mensaje
+            +showinfo=Muestra la informacion en modo (informacion)
+            +showerror =Muestra la informacion em modo (error)
+            +showwarining = Muestra la informacion em modo (advertencia)
+        messagebox.showinfo(message="Para poder ejecutar este programa con todos sus botones tienes que : \n\n *Instalar la libreria tabulate (pip install tabulate (en el cmd)) \n *Tener instalado la base de datos llamada sqlite3 \n *Tener instalado Pandas \n *Tener instalado Matplotlib", title="Cosas Necesarias")
+        --message=Es el mensja que queramos decir , title =Es el titulo de la ventana que se genera--
+
+
+
+        -- Para crear una ventana como una vista de arbol con barras de desplazamiento seria esta sintaxis--
+        -- Esto a mi me sirvio para poner los valores de una base de datos --
+        EJEMPLO:
+        ID NOMBRE APELLIDO 
+        1   daniel  rojas  - y asi para que se abra una ventana con una consulta esto se adapta a tu numeros de registros--
+        self.ventana9=tk.Tk()  -- Primero creamos la ventana principal
+        self.ancho_ventana = 790  -- esto ya lo vimos arriba--
+        self.alto_ventana = 200
+
+        self.x_ventana = self.ventana9.winfo_screenwidth() - 410 - self.ancho_ventana // 2
+        self.y_ventana = self.ventana9.winfo_screenheight() - 500 - self.alto_ventana // 2
+        self.posicion = str(self.ancho_ventana) + "x" + str(self.alto_ventana) + "+" + str(self.x_ventana) + "+" + str(self.y_ventana)
+        self.ventana9.geometry(self.posicion)
+
+        self.ventana9.title("Buscado por Nombre : "+nombre)
+        self.ventana9.geometry("800x500")
+        self.ventana9.iconbitmap("Multimedia\\icono.ico")
+        self.ventana9.maxsize(800, 500)
+        self.ventana9.minsize(800, 500)
+
+        -- Creamos un frame de color crimson que este en la ventana principal --
+        self.frame09=tk.Frame(self.ventana9,bd=4,relief="ridge",bg="crimson")
+        self.frame09.pack(expand=True,fill="both")
+
+        --Creamos el scroll de abajo(x) scroll=Barra de desplazamiento
+        self.scroll_x=tk.Scrollbar(self.frame09,orient="horizontal")
+
+        --Cremaos el scroll de lado derecho (y)
+        self.scroll_y=tk.Scrollbar(self.frame09,orient="vertical")
+
+        --Despues definomos una variable con el metodo (Treeview),
+        le damos donde queremos que este ubicado , las columnas que queremos que tenga y los comandos de la barra de desplazamiento con el nombre de las variables--
+        self.Empleado_Tabla=ttk.Treeview(self.frame09,columns=("matricula","nombre","apellido","edad","telefono","domicilio","inscripcion","fecha_Modificacion"),xscrollcommand=self.scroll_x.set,yscrollcommand=self.scroll_y.set)
+        
+        -- Lo ponemos donde queremos que esten las barras 
+        self.scroll_x.pack(side="bottom",fill="x")
+        self.scroll_y.pack(side="right",fill="y") ---
+
+        --- Aqui ponemos que cuando se muevan muestre el comando-- con .config
+        self.scroll_x.config(command=self.Empleado_Tabla.xview)
+        self.scroll_y.config(command=self.Empleado_Tabla.yview)
+
+        -- Esto es si queremos cambiarle el nombre a la columnas
+        self.Empleado_Tabla.heading("matricula",text="Matricula")
+        self.Empleado_Tabla.heading("nombre",text="Nombre")
+        self.Empleado_Tabla.heading("apellido",text="Apellido")
+        self.Empleado_Tabla.heading("edad",text="Edad")
+        self.Empleado_Tabla.heading("telefono",text="Telefono")
+        self.Empleado_Tabla.heading("domicilio",text="Domicilio")
+        self.Empleado_Tabla.heading("inscripcion",text="Inscripcion")
+        self.Empleado_Tabla.heading("fecha_Modificacion",text="Fecha_Modificacion")
+        self.Empleado_Tabla.pack(fill="both",expand=1)--
+
+        -- Esto es si queremos cambiarle el ancho a los encabezados 
+        self.Empleado_Tabla['show']='headings'
+        self.Empleado_Tabla.column("matricula",width=100)
+        self.Empleado_Tabla.column("nombre",width=100)
+        self.Empleado_Tabla.column("apellido",width=100)
+        self.Empleado_Tabla.column("edad",width=50)
+        self.Empleado_Tabla.column("telefono",width=90)
+        self.Empleado_Tabla.column("domicilio",width=120)
+        self.Empleado_Tabla.column("inscripcion",width=100)
+        self.Empleado_Tabla.column("fecha_Modificacion",width=120)--
+        
+
+        index = iid = 0
+        -- Aqui es para ponerle los valores a las columnas 
+        for elemento in registros: -- registros seria donde tenemos los valore 
+
+            self.Empleado_Tabla.insert("", index, iid, values=elemento) -- index y iid seria la posicion 
+            estos se irian sumando uno estos se deben de dejar asi -- y values(elemento)seria cada elemento de tu grupo de elementos
+            index = iid = index + 1
+
+        self.ventana9.mainloop() -- Aqui cerramos el ciclo
+
+
+
+        --AL FINAL DEL EJERCICIO QUE HICISTE SIEMPRE TIENES QUE PONER ESTO PARA QUE FUNCIONE --
+
+app=Aplicacion() esto correra todo el codigo app="Aqui va en nombre de tu clase"
+
+
+-- Ligas de mi repositorio donde pondras ejecutar mejor y ver ejemplos de tkinter --
+tengo ejemplos orientado a objetos que es la mejor opcion y otra que es normal (basico)
+
+liga de github : https://github.com/DanielRojas2002/tkinter 
